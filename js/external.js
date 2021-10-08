@@ -12,7 +12,7 @@ var brotherBear = prompt("How many days did you rent Brother Bear for?");
 var hercules = prompt("How many days did you rent Hercules for?");
 var costOfMovie = prompt("How much was the movie per day?");
 
-alert("Your final cost is: " + ((Number(littleMermaid) + Number(brotherBear) + Number(hercules)) * Number(costOfMovie)  ));
+alert("Your final cost is: $" + ((Number(littleMermaid) + Number(brotherBear) + Number(hercules)) * Number(costOfMovie)));
 
 var google = prompt("How much are you getting paid by Google?");
 var googleHours =  prompt("How many hours did you work for Google?");
@@ -34,7 +34,7 @@ alert("Are you enrolled in the class? " + (result.toString()).toUpperCase());
 
 var itemsPurchased = prompt("How many items did you purchase?");
 var offerExpired = confirm("Is the offer expired?");
-var premiumMember = confirm("Are you a premium member?")
+var premiumMember = confirm("Are you a premium member?");
 
 var productOffer = !offerExpired && (premiumMember || Number(itemsPurchased) >= 2);
 
