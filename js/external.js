@@ -25,3 +25,11 @@ var faceBookHours = prompt("How many hours did you work for Facebook");
 var faceBookPmt = Number(faceBook) * Number(faceBookHours);
 
 alert("You will receive $" + (googlePmt + amazonPmt + faceBookPmt) + " for this week!" );
+
+var classFull = confirm("Is the class full?");
+var conflict = confirm("Does the class conflict with your schedule?");
+var result = !classFull && !conflict;
+
+alert("Are you enrolled in the class? " + (result.toString()).toUpperCase());
+
+
