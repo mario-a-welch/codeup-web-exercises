@@ -32,4 +32,11 @@ var result = !classFull && !conflict;
 
 alert("Are you enrolled in the class? " + (result.toString()).toUpperCase());
 
+var itemsPurchased = prompt("How many items did you purchase?");
+var offerExpired = confirm("Is the offer expired?");
+var premiumMember = confirm("Are you a premium member?")
+
+var productOffer = !offerExpired && (premiumMember || Number(itemsPurchased) >= 2);
+
+alert("Can the store honor the product offer? " + (productOffer.toString()).toUpperCase());
 
