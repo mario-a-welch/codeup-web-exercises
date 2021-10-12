@@ -82,8 +82,8 @@
      * prompt the user for the bill total and a percentage they would like to tip,
      * then display the dollar amount they should tip
      */
-    var totalBill = prompt("What is the total of the bill?");
-    var amountOfTip = prompt("How much do you want to tip? (Please put percent in decimal form)")
+    var totalBill = parseFloat(prompt("What is the total of the bill?"));
+    var amountOfTip = parseFloat(prompt("How much do you want to tip? (Please put percent in decimal form)"));
 
     alert("The total amount you should tip is: $" + calculateTip(amountOfTip, totalBill));
 
