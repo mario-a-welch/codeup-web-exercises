@@ -24,20 +24,20 @@
 
 function analyzeColor (inputColor) {
     if (inputColor === "blue") {
-        console.log("Blue is the color of the sky!");
+        return "Blue is the color of the sky!";
     } else if (inputColor === "red") {
-        console.log("Strawberries are red!");
+        return "Strawberries are red!";
     } else if (inputColor === "cyan") {
-        console.log("I don't know anything about cyan.");
+        return "I don't know anything about cyan.";
     } else {
-        console.log("The color you chose was " + inputColor + " and I didnt write a string for that, sorry.");
+        return "The color you chose was " + inputColor + " and I didnt write a string for that, sorry.";
     }
 }
 
-analyzeColor("blue");
-analyzeColor("red");
-analyzeColor("cyan");
-analyzeColor("black");
+console.log(analyzeColor("blue"));
+console.log(analyzeColor("red"));
+console.log(analyzeColor("cyan"));
+console.log(analyzeColor("black"));
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -52,7 +52,7 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message every time you refresh the page
  */
 
-analyzeColor(randomColor);
+console.log(analyzeColor(randomColor));
 
 /**
  * TODO:
@@ -61,24 +61,24 @@ analyzeColor(randomColor);
 function analyzeColors(color) {
     switch (color) {
         case "blue":
-            console.log("Blue is the color of the ocean!");
+            return "Blue is the color of the ocean!";
             break;
         case "red":
-            console.log("Red is the color of a stop sign.");
+            return "Red is the color of a stop sign.";
             break;
         case "cyan":
-            console.log("I don't know many things that are cyan.");
+            return "I don't know many things that are cyan.";
             break;
         default:
-            console.log("Sorry, I didn't create a unique string for the color "+ color);
+            return "Sorry, I didn't create a unique string for the color "+ color;
             break;
     }
 }
 
-analyzeColors("blue");
-analyzeColors("red");
-analyzeColors("cyan");
-analyzeColors("black");
+console.log(analyzeColors("blue"));
+console.log(analyzeColors("red"));
+console.log(analyzeColors("cyan"));
+console.log(analyzeColors("black"));
 
 /**
  * TODO:
@@ -88,7 +88,8 @@ analyzeColors("black");
  */
 var userInputOfColor = prompt("Pick a color:");
 
-analyzeColor(userInputOfColor);
+alert(analyzeColor(userInputOfColor));
+
 /* ########################################################################## */
 
 /**
@@ -140,13 +141,14 @@ console.log(calculateTotal(5, 1000));
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
-// Generate a random number between 0 and 6
+// Generate a random number between 0 and 5
 var luckyNumber = Math.floor(Math.random() * 6);
 
-var totalBill = prompt("What is the total of the bill?")
+var totalBill = parseFloat(prompt("What is the total of the bill?"));
+
 alert("Your lucky number is "+ luckyNumber);
-alert("The price before the discount is applied is $" + totalBill);
-alert("The price after the discount has been applied is $" + calculateTotal(luckyNumber, totalBill));
+alert("The price before the discount has been applied is $" + totalBill);
+alert("The price after the discount is: " + calculateTotal(luckyNumber, totalBill));
 
 /**
  * TODO:
@@ -165,25 +167,53 @@ alert("The price after the discount has been applied is $" + calculateTotal(luck
  * HINT: The way we prompt for a value could be improved
  */
 
-var wantToEnterANumber = confirm("Would you like to enter in a number");
-
-
-var inputNumber = parseFloat(prompt("Please enter a number of your choice"));
-
-    if (typeof inputNumber === "Number") {
-        if (inputNumber % 2 === 0) {
-            alert("Your number is even.");
+if (confirm("Do you want to enter in a number")) {
+    var useInput = parseFloat(prompt("What is your number?"));
+    if (!isNaN(useInput)){
+        if(useInput % 2 === 0){
+            alert(useInput + " is a even number.");
         } else {
-            alert("Your number is odd");
+            alert(useInput + " is an odd number");
         }
 
-        alert(inputNumber + 100);
+        alert(useInput + 100);
 
-        if (inputNumber > 0) {
+        if (useInput > 0) {
             alert("Your number is positive.");
         } else {
             alert("Your number is negative.");
         }
-    } else {
-        alert("Sorry that is not a number");
+    }else {
+        alert("You didn't enter in a number.")
     }
+} else {
+    alert("Sorry you do not want to play a game.");
+}
+
+// function numGame(num) {
+//     var userNum = parseFloat(num);
+//     if (!isNaN(userNum)){
+//         if(userNum % 2 === 0){
+//             alert(userNum + " is a even number.");
+//         } else {
+//             alert(userNum + " is an odd number");
+//         }
+//
+//         alert(userNum + 100);
+//
+//         if (userNum > 0) {
+//             alert("Your number is positive.");
+//         } else {
+//             alert("Your number is negative.");
+//         }
+//     }else {
+//         alert("You didn't enter in a number.")
+//     }
+// }
+//
+// if (confirm("Do you want to enter in a number")) {
+//     var userInput = prompt("What is your number?")
+//     numGame(userInput);
+// } else {
+//     alert("Sorry you do not want to play a game.");
+// }
