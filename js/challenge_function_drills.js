@@ -103,4 +103,63 @@
 
     console.log(subtract(7, 5));
     console.log(subtract(12, 5));
+
+    //Write multiply(a, b) function that returns the product
+    function multiply(a, b) {
+        return a * b;
+    }
+
+    console.log(multiply(9, 9));
+    console.log(multiply(7, 7));
+
+    //Write a divide(numerator, denominator) function that returns a divided by b
+    function divide(a, b) {
+        return a / b;
+    }
+
+    console.log(divide(12, 3));
+    console.log(divide(64, 8));
+
+    //Write a remainder(number, divisor) function that returns the remainder left over when dividing number by the divisor
+    function remainder(number, divisor) {
+        return number % divisor;
+    }
+
+    console.log(remainder(49, 6));
+    console.log(remainder(57, 4));
+
+    //Write a function square(a) that takes in a number and returns the number multiplied by itself
+    function square(a) {
+        return a * a;
+    }
+
+    console.log(square(6));
+    console.log(square(5));
+
+    //Write a function called sumOfSquares(a, b) that uses only your add() function and your square function and not + or * operatros
+    function sumOfSquares(a, b) {
+        return add(square(a), square(b));
+    }
+
+    console.log(sumOfSquares(5, 4));
+
+    //Write a function called doMath(operator, a, b) that takes 3 parameters.  The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
+    function doMath(operator, a, b) {
+        if(operator === 'add' || operator === 'sum' || operator === 'addition' || operator === '+') {
+            return add(a, b);
+        } else if(operator === 'subtract' || operator === 'subtraction' || operator === 'difference' || operator === '-') {
+            return subtract(a, b);
+        } else if(operator === 'multiply' || operator === 'multiplication' || operator === 'product' || operator === '*') {
+            return multiply(a, b);
+        } else if(operator === 'divide' || operator === 'division' || operator === '/') {
+            return divide(a, b);
+        } else {
+            return false;
+        }
+    }
+
+    console.log(doMath('add', 25, 25));
+    console.log(doMath('-', 17, 2));
+    console.log(doMath('product', 7, 3));
+    console.log(doMath('/', 49, 7));
 })();
