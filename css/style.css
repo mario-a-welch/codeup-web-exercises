@@ -1,0 +1,55 @@
+/*
+this file is named "site.css" and is in a directory named "css"
+*/
+
+.fancy-header {
+    color: blue;
+    text-decoration: underline;
+    text-align: center;
+}
+
+h2 {
+    color: limegreen;
+    text-decoration: underline;
+}
+
+body {
+    background-color: seashell;
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), seashell);
+    font-family: "American Typewriter", monospace;
+}
+
+ul {
+    list-style-type: square;
+}
+
+
+td {
+    padding: 25px 25px;
+    text-align: center;
+}
+
+th {
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+a:link {
+    color:red;
+}
+
+/* visited link (:visited) */
+a:visited {
+    color:black;
+}
+
+/* mouse hover over link (:hover) */
+a:hover {
+    color:blue;
+}
+
+/* active/selected link (:active) */
+a:active {
+    color:green;
+}
+
