@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Exercise</title>
+</head>
+<body>
+    <h1 class="codeup">jQuery</h1>
+    <p id="para-info">jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and
+        manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a
+        multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that
+        millions of people write JavaScript.
+    </p>
+    <div class="codeup">jQuery Selectors</div>
+    <ul>
+        <li id="codeup">Selector - Syntax</li>
+        <li id="info2">ID Selector - #id</li>
+        <li id="info3">Class Selector - .class</li>
+        <li id="info4">Element Selector - element</li>
+        <li id="info5">Multiple Selector - selector1, selector2, ...</li>
+        <li id="info6">All Selector - *</li>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script> <!--Elements-and-Multiple-Selector-Exercise-->
+        $('li').css('font-size', '20px');
+        $('p').css('font-size', '25px');
+        $('h1').css('text-align', 'center')
+        $('li, p, h1').css('color', 'green'); <!--Multiple Selector-->
+        var contents = $('h1').html();
+        alert(contents);
+    </script>
+
+<!--    <script>  Class Selector Exercise-->
+<!--        $('.codeup').css('border', '1px solid red')-->
+<!--    </script>-->
+
+<!--    The element which gets an id of codeup will not get the border becuase it is not a class-->
+
+
+<!--    <script>   Id Selector Exercise-->
+<!--        var contents = $('#info').html();-->
+<!--        alert(contents);-->
+<!--    </script>-->
+
+<!--When using the same id on 2 elements, the jQuery selection will only alert the first instance-->
+
+
+
+</body>
+</html>
