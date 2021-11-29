@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery FAQ</title>
+    <style>
+        .invisible{
+            visibility: hidden;
+        }
+
+        .highlighter{
+            background-color: #00ABA9;
+        }
+    </style>
+</head>
+<body>
+    <h1>JQuery FAQ for Beginners</h1>
+    <dl>
+        <dt>What is JQuery?</dt>
+        <dd class="invisible">JQuery is a library designed by javascript, it is lightweight, it         is simpler than JavaScript. It has many inbuilt methods and it can handle events, HTML         DOM and Ajax </dd>
+
+        <dt>What is $ in JQuery?</dt>
+        <dd class="invisible">It is a function selector or a jQuery object, some say $ is a             shortcut to the jQuery function</dd>
+
+        <dt>Can I use JavaScript and JQuery on the same page?</dt>
+        <dd class="invisible">Yes, we can use JavaScript and JQuery on the same page.  For the          use of jQuery we need to add .JS library reference to the page, whereas for                    JavaScript, separate library reference is needed.</dd>
+
+        <dt>What is JQuery UI?</dt>
+        <dd class="invisible">JQuery UI is also a JavaScript library, as name suggest it is a           user interface portal that is built using JavaScript and can be easily added in new and        existing applications. It contains interactions, widgets and effects, we can build UI          rich and highly interactive applications using it.</dd>
+
+        <dt>Can JQuery parse XML?</dt>
+        <dd class="invisible">No, currently JQuery supports only HTML DOM parser</dd>
+
+        <dt>How to check if element is hidden or visible using JQuery?</dt>
+        <dd class="invisible">You can use 'is()' method for 'display' or 'hidden' property, it          returns boolean variable</dd>
+
+        <dt>How do I test whether an element has a particular class?</dt>
+        <dd class="invisible">.hasClass() (added in version 1.2) handles this common use                case.  You can also use the .is() method along with an appropriate selector for more           advanced matching</dd>
+
+        <dt>How do I disable/enable a form element?</dt>
+        <dd class="invisible">You can enable or disable a form element using the .prop()                method</dd>
+
+        <dt>What is the different between the ID selector and the class selector?</dt>
+        <dd class="invisible">The difference between ID and class selection is the same in              jQuery as it is in other programs like CSS. An ID selector uses an object or element’s         ID, appearing like something along the lines of, “#element1.” A class selector,                meanwhile, uses a CSS class in order to select multiple elements at once. Obviously,           then, if you want to select only one element, you’ll want to use an ID selector. If you        want to select multiple elements, you’ll want to wrap them up into a CSS class, and            then use a class selector to manipulate the CSS class that you’ve created.</dd>
+
+        <dt>Can you hide an image on a button click?</dt>
+        <dd class="invisible">This question is often used in job interviews in order to test an         applicant’s knowledge of jQuery and its associated codebase and systems. In particular,        this question tests an applicant’s ability to solve a problem based on event handling,         which jQuery offers a pretty good support base for. The code for it is simple and easy         to figure out, since its based off the hide() event. The code for this task looks              something like this: $(“#ButtonToClick”).click(function(){$(“#ImageToHide”).hide();            });</dd>
+    </dl>
+
+    <a href="#" id="invisible-to-visible">Click to toggle</a>
+    <!--Link to add jQuery-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#invisible-to-visible').click(function(event) {
+                event.preventDefault();
+                $('dd').toggleClass('invisible');
+            });
+
+            $('dt').click(function (){
+                $(this).toggleClass('highlighter')
+            })
+        });
+    </script>
+</body>
+</html>
