@@ -48,6 +48,31 @@
     </dl>
 
     <a href="#" id="invisible-to-visible">Click to toggle</a>
+
+    <h3>Yosemite National Park</h3>
+    <ul>
+        <li>Accessible by car year-round</li>
+        <li>Park is about 750,000 acres</li>
+        <li>First state park in California</li>
+        <li>Known for its granite cliffs, waterfalls, clear streams, giant sequoia groves and biological diversity</li>
+    </ul>
+    <h3>Death Valley National Park</h3>
+    <ul>
+        <li>Largest U.S. National Park outside Alaska at 3,422,024 acres</li>
+        <li>Straddles eastern California and Nevada</li>
+        <li>Contains Badwater Basin's salt flats, known as North America's lowest point</li>
+        <li>North America's driest and hottest spot</li>
+    </ul>
+    <h3>Pinnacles National Park</h3>
+    <ul>
+        <li>Formed by volcanoes that erupted 23 million years ago</li>
+        <li>Mediterranean climate</li>
+        <li>26,685 acres, the seventh smallest of the 63 national parks in the US</li>
+        <li>Contains talus caves, home to bat colonies</li>
+    </ul>
+
+    <button type="button" id="btn-1">LI</button>
+
     <!--Link to add jQuery-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -60,6 +85,20 @@
 
             $('dt').click(function (){
                 $(this).toggleClass('highlighter')
+            })
+
+            $('#btn-1').click(function (){
+                $('ul').each(function (){
+                    $(this).children().last().css('background-color', 'yellow')
+                })
+            })
+
+            $('h3').click(function(){
+                $(this).next().children().css('font-weight', 'bold')
+            })
+
+            $('li').click(function (){
+                $(this).parent().children().first().css('color', 'blue')
             })
         });
     </script>
