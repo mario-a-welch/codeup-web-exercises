@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox </title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+<h1>Mapbox API Exercise</h1>
+
+<div id='map' style='width: 800px; height: 600px;'></div>
+
+<button id="zoomInFive">Zoom 5</button>
+<button id="zoomInFifteen">Zoom 15</button>
+<button id="zoomInTwenty">Zoom 20</button>
+<button id="zoomOut">Zoom Out</button>
+
+<script src="js/keys.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script>
+
+    mapboxgl.accessToken = MAPBOX_KEY;
+
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-98.4683, 29.5312], // starting position [lng, lat]
+        zoom: 9 // starting zoom, the greater the number the closer the zoom (0-24)
+    });
+
+    geocode("3708 Las Vegas Boulevard, South Las Vegas, Nevada 89109", MAPBOX_KEY).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(9);
+    });
+
+    //Sets Zoom to 5
+    $('#zoomInFive').click(function(){
+        map.setZoom(5);
+    })
+
+    //Sets Zoom to 15
+    $('#zoomInFifteen').click(function(){
+        map.setZoom(15);
+    })
+
+    //Sets Zoom to 20
+    $('#zoomInTwenty').click(function(){
+        map.setZoom(20);
+    })
+
+    //Gets current Zoom and Zooms out by 1
+    $('#zoomOut').click(function(){
+        map.setZoom(map.getZoom() - 1);
+    })
+
+    //Creates Popup
+    var hattieBsPopup = new mapboxgl.Popup({offset: 25}).setHTML('<h3>Hattie B\'s Hot Chicken</h3>')
+
+    //Creates Marker and adds popup to it
+    var hattieBsHotChicken = new mapboxgl.Marker({
+        color: 'red'
+    }).setLngLat([-115.17419994266203, 36.109470057586364])//.setDraggable(true)-- was used to get exact coordinates
+    .setPopup(hattieBsPopup)
+
+    hattieBsHotChicken.addTo(map)
+
+
+
+</script>
+
+
+</body>
+</html>
