@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+</head>
+<body id="konami-code">
+  <h1 align="center">Konami Code</h1>
+
+  <style>
+    body{
+      background-image: url(/img/Konami-min.jpeg);
+    }
+    h1{
+      color: white;
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script>
+    "use strict";
+
+      $(document).keyup(function(event){
+        console.log(event.keyCode);
+      });
+
+    // var key = [];  // will store the keys the user presses
+    // var correctCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13] // correct code that the user needs to enter to unlock the page functionality
+    //
+    // var konamiCode = $('#konami-code')  //assigned the body id to a variable
+    //
+    // var codePosition = 0; //will track the position the user has progressed to
+    //
+    // function cheatIsActivated(){
+    //   konamiCode.css({
+    //     'background-color': 'red'
+    //   })
+    //   $('h1').css({
+    //     'text-align': 'center',
+    //     'color': 'white'
+    //   })
+    // }
+
+    var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+    var emptyArray = [];
+    // var count = 0;
+    // var codePosition = 0;
+
+    $(document).keyup(function (e){
+      emptyArray.push(e.keyCode);
+      console.log(emptyArray)
+      // if(emptyArray[count] === konamiCode[codePosition]) {
+      //   count++;
+      //   codePosition++;
+      //   console.log(count)
+      //   console.log(codePosition)
+        if (konamiCode.toString() === emptyArray.toString()) {
+          alert('You have added 30 lives!')
+          emptyArray = [];
+        }
+      // } else{
+      //   alert('wrong code')
+      //   emptyArray = [];
+      // }
+    });
+
+  </script>
+</body>
+</html>
