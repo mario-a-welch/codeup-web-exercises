@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <!--    Link to Add Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        .card-body{
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-light bg-primary">
+        <a class="navbar-brand text-white">WEATHER MAP</a>
+<!--        <form class="form-inline">-->
+            <input id="input-text" class="form-control mr-sm-2" type="search" placeholder="Type Location" aria-label="Search">
+            <button id="search-button" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+<!--        </form>-->
+    </nav>
+
+    <br>
+
+
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+
+        <br>
+    <div class="container">
+    <div id='map' style='width: 1100px; height: 600px;'></div>
+    </div>
+
+
+    <!--    Script to add JQuery-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <!--Script to add Mapbox and OpenWeatherMap APIs-->
+    <script src="js/keys.js"></script>
+    <!--Codeup GeoCoder-->
+    <script src="js/mapbox-geocoder-utils.js"></script>
+
+    <!--    Script to add Bootstrap JS Bundle-->
+<!--    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <script>
+
+        //ADDS MAP TO BROWSER
+        mapboxgl.accessToken = MAPBOX_KEY;
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [-98.48527, 29.423017], // starting position [lng, lat]
+            zoom: 9 // starting zoom, the greater the number the closer the zoom (0-24)
+        });
+
+        //ADDS MAP CONTROL-ZOOMIN, ZOOMOUT, COMPASS
+        map.addControl(new mapboxgl.NavigationControl())
+
+        //MARKER
+        var marker = new mapboxgl.Marker({
+            color: 'blue'
+            // }).setLngLat([-98.48615,29.426827])
+        }).setLngLat([-98.48615,29.426827]).setDraggable(true)  //-- will allow you to drag the marker
+
+        marker.addTo(map)
+        console.log(marker.getLngLat().lat)
+
+        //CONSOLE LOG COORDINATES AND STORES THEM IN VARIABLES
+        marker.on('dragend', function() {
+            // console.log('Hello! Stop moving the marker..')
+            console.log(marker.getLngLat());
+            const lngLat = marker.getLngLat();
+            var newLatitude = lngLat.lat;
+            var newLongitude = lngLat.lng;
+        })
+
+        function mapStart(){
+            var lat = 29.423017;
+            var lng = -98.48527;
+
+            marker.setLngLat([lng,lat])
+            .addTo(map)
+            map.setCenter([lng, lat])
+            getTheWeather(lat, lng)
+        }
+
+        mapStart()
+
+        function getTheWeather(lat, lng){
+            $.get('https://api.openweathermap.org/data/2.5/onecall',{
+                lat: lat,
+                lon: lng,
+                exclude: 'minutely, hourly',
+                units: 'imperial',
+                APPID: WEATHER_MAP_KEY
+            }).done(function(data){
+                console.log(data);
+                console.log(data.current.temp)
+
+                for(i = 0; i < 5; i++){
+                    var iconLocation = data.daily[i].weather[0].icon
+                    var icon = '<img src="http://openweathermap.org/img/w/' + iconLocation + '.png" alt="weather icon"/>'
+                    var template =
+                        '<div class="col">' +
+                        '<div class="card text-center">' +
+                        '<div class="card-body">' +
+                        '<h5>' +
+                        ((new Date(data.daily[i].dt * 1000)).toDateString()) +
+                        '</h5>' +
+                        '<p>'+icon+'</p>' +
+                        '<p>'+data.daily[i].temp.day+' &degF</p>' +
+                        '<p>'+'High: '+data.daily[i].temp.max +' &degF</p>' +
+                        '<p>'+'Low: '+ data.daily[i].temp.min +' &degF</p>' +
+                        '<p>'+'Humidity: '+data.daily[i].humidity +' %</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                    // Displays Date
+                    // $('#weather_icon').attr('src', "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + '.png'); // Displays weather icon
+                    // todaysTemp.innerHTML = 'Temp: '+ data.current.temp+ ' F'; // Displays temp
+                    // maxTemp.innerHTML= "High: " + data.daily[i].temp.max + ' F'; // Displays High
+                    // minTemp.innerHTML= "Low: " + data.daily[i].temp.min + ' F'; // Displays Low
+                    // humidity.innerHTML = 'Humidity: ' + data.daily[i].humidity + '%'; // Displays Humidity
+                    $('.row').append(template)
+                }
+            })
+        }
+        // $.get('https://api.openweathermap.org/data/2.5/onecall',{
+        //     lat: marker.getLngLat().lat,
+        //     lon: marker.getLngLat().lng,//-95.3698,
+        //     exclude: 'minutely, hourly',
+        //     units: 'imperial',
+        //     APPID: WEATHER_MAP_KEY
+        // }).done(function(data){
+        //     console.log(data);
+        //     console.log(data.current.temp)
+        //
+        //     for(i = 0; i < 5; i++){
+        //         var iconLocation = data.daily[i].weather[0].icon
+        //         var icon = '<img src="http://openweathermap.org/img/w/' + iconLocation + '.png" alt="weather icon"/>'
+        //         var template =
+        //            '<div class="col">' +
+        //                    '<div class="card text-center">' +
+        //                         '<div class="card-body">' +
+        //                                         '<h5>' +
+        //                                             ((new Date(data.daily[i].dt * 1000)).toDateString()) +
+        //                                         '</h5>' +
+        //                                         '<p>'+icon+'</p>' +
+        //                                         '<p>'+data.daily[i].temp.day+' &degF</p>' +
+        //                                         '<p>'+'High: '+data.daily[i].temp.max +' &degF</p>' +
+        //                                         '<p>'+'Low: '+ data.daily[i].temp.min +' &degF</p>' +
+        //                                         '<p>'+'Humidity: '+data.daily[i].humidity +' %</p>' +
+        //                                     '</div>' +
+        //                                 '</div>' +
+        //                             '</div>' +
+        //                         '</div>' +
+        //                    '</div>' +
+        //            '</div>'
+        //         $('.row').append(template)
+        //     }
+        // })
+
+        $('#search-button').click(function(){
+            var newLocation = $('#input-text').val()
+            geocode(newLocation, MAPBOX_KEY).then(function(results) {
+                console.log(results)
+                var newLng = results[0]
+                var newLat = results[1]
+                marker.setLngLat([newLng, newLat])
+                .addTo(map)
+                map.setCenter([newLng, newLat])
+            })
+        })
+
+
+    </script>
+
+</body>
+</html>
