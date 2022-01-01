@@ -35,7 +35,8 @@
         </div>
     </div>
 
-        <br>
+    <br>
+
     <div class="container">
     <div id='map' style='width: 1100px; height: 600px;'></div>
     </div>
@@ -113,32 +114,24 @@
                     var icon = '<img src="http://openweathermap.org/img/w/' + iconLocation + '.png" alt="weather icon"/>'
                     var template =
                         '<div class="col">' +
-                        '<div class="card text-center">' +
-                        '<div class="card-body">' +
-                        '<h5>' +
-                        ((new Date(data.daily[i].dt * 1000)).toDateString()) +
-                        '</h5>' +
-                        '<p>'+icon+'</p>' +
-                        '<p>'+data.daily[i].temp.day+' &degF</p>' +
-                        '<p>'+'High: '+data.daily[i].temp.max +' &degF</p>' +
-                        '<p>'+'Low: '+ data.daily[i].temp.min +' &degF</p>' +
-                        '<p>'+'Humidity: '+data.daily[i].humidity +' %</p>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
+                            '<div class="card text-center">' +
+                                '<div class="card-body">' +
+                                    '<h5>' +
+                                        ((new Date(data.daily[i].dt * 1000)).toDateString()) + // Displays Date
+                                    '</h5>' +
+                                    '<p>'+icon+'</p>' +  //Displays weather icon
+                                    '<p>'+data.daily[i].temp.day+' &degF</p>' + // Displays temp
+                                    '<p>'+'High: '+data.daily[i].temp.max +' &degF</p>' + // Displays High Temp
+                                    '<p>'+'Low: '+ data.daily[i].temp.min +' &degF</p>' + // Displays Low Temp
+                                    '<p>'+'Humidity: '+data.daily[i].humidity +' %</p>' + // Displays Humidity
+                                '</div>' +
+                            '</div>' +
                         '</div>'
-                    // Displays Date
-                    // $('#weather_icon').attr('src', "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + '.png'); // Displays weather icon
-                    // todaysTemp.innerHTML = 'Temp: '+ data.current.temp+ ' F'; // Displays temp
-                    // maxTemp.innerHTML= "High: " + data.daily[i].temp.max + ' F'; // Displays High
-                    // minTemp.innerHTML= "Low: " + data.daily[i].temp.min + ' F'; // Displays Low
-                    // humidity.innerHTML = 'Humidity: ' + data.daily[i].humidity + '%'; // Displays Humidity
-                    $('.row').append(template)
+                    $('.row').append(template) // Displays template info to the row
                 }
             })
         }
+
         // $.get('https://api.openweathermap.org/data/2.5/onecall',{
         //     lat: marker.getLngLat().lat,
         //     lon: marker.getLngLat().lng,//-95.3698,
@@ -183,6 +176,12 @@
                 marker.setLngLat([newLng, newLat])
                 .addTo(map)
                 map.setCenter([newLng, newLat])
+                console.log(newLng);
+                console.log(newLat);
+
+                $('.row').empty(); // Empties row
+
+                getTheWeather(newLat, newLng);
             })
         })
 
