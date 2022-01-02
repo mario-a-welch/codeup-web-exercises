@@ -77,15 +77,6 @@
         marker.addTo(map)
         console.log(marker.getLngLat().lat)
 
-        //CONSOLE LOG COORDINATES AND STORES THEM IN VARIABLES
-        marker.on('dragend', function() {
-            // console.log('Hello! Stop moving the marker..')
-            console.log(marker.getLngLat());
-            const lngLat = marker.getLngLat();
-            var newLatitude = lngLat.lat;
-            var newLongitude = lngLat.lng;
-        })
-
         function mapStart(){
             var lat = 29.423017;
             var lng = -98.48527;
@@ -132,41 +123,7 @@
             })
         }
 
-        // $.get('https://api.openweathermap.org/data/2.5/onecall',{
-        //     lat: marker.getLngLat().lat,
-        //     lon: marker.getLngLat().lng,//-95.3698,
-        //     exclude: 'minutely, hourly',
-        //     units: 'imperial',
-        //     APPID: WEATHER_MAP_KEY
-        // }).done(function(data){
-        //     console.log(data);
-        //     console.log(data.current.temp)
-        //
-        //     for(i = 0; i < 5; i++){
-        //         var iconLocation = data.daily[i].weather[0].icon
-        //         var icon = '<img src="http://openweathermap.org/img/w/' + iconLocation + '.png" alt="weather icon"/>'
-        //         var template =
-        //            '<div class="col">' +
-        //                    '<div class="card text-center">' +
-        //                         '<div class="card-body">' +
-        //                                         '<h5>' +
-        //                                             ((new Date(data.daily[i].dt * 1000)).toDateString()) +
-        //                                         '</h5>' +
-        //                                         '<p>'+icon+'</p>' +
-        //                                         '<p>'+data.daily[i].temp.day+' &degF</p>' +
-        //                                         '<p>'+'High: '+data.daily[i].temp.max +' &degF</p>' +
-        //                                         '<p>'+'Low: '+ data.daily[i].temp.min +' &degF</p>' +
-        //                                         '<p>'+'Humidity: '+data.daily[i].humidity +' %</p>' +
-        //                                     '</div>' +
-        //                                 '</div>' +
-        //                             '</div>' +
-        //                         '</div>' +
-        //                    '</div>' +
-        //            '</div>'
-        //         $('.row').append(template)
-        //     }
-        // })
-
+        //When search button is clicked, uses geocoder to get coordinates of input text and runs them through the getTheWeather function
         $('#search-button').click(function(){
             var newLocation = $('#input-text').val()
             geocode(newLocation, MAPBOX_KEY).then(function(results) {
@@ -179,13 +136,24 @@
                 console.log(newLng);
                 console.log(newLat);
 
-                $('.row').empty(); // Empties row
+                $('.row').empty(); //Empties row
 
                 getTheWeather(newLat, newLng);
             })
         })
 
+        //On marker drop, stores values in newLatitude and newLongitude variables and puts them in the getTheWeather function
+        marker.on('dragend', function() {
+            // console.log('Hello! Stop moving the marker..')
+            console.log(marker.getLngLat());
+            const lngLat = marker.getLngLat();
+            var newLatitude = lngLat.lat;
+            var newLongitude = lngLat.lng;
 
+            $('.row').empty(); //Empties row
+
+            getTheWeather(newLatitude, newLongitude);
+        })
     </script>
 
 </body>
